@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+ 
+  </head>
+  <body>
+    <div class="loader">
+      <div class="spinner"></div>
+    </div>
+  
+    <div class="center hide">
+      <h1>Signup</h1>
+      
+      <form method="POST">
+        {% csrf_token %}
+        
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        <div class="txt_field">
+          <input type="text" name="firstname" value="{{ values.first_name }}" required>
+          <span></span>
+          <label>First Name</label>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="lastname" value="{{ values.last_name }}" required>
+          <span></span>
+          <label>Last Name</label>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="phone" value="{{ values.phone }}" required>
+          <span></span>
+          <label>Phone Number</label>
+        </div>
+        <div class="txt_field">
+          <input type="email" name="email" value="{{ values.email }}" required>
+          <span></span>
+          <label>Email</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" name="password" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+        <input type="submit" value="Signup">
+        <div class="signup_link">
+          Already a member? <a href="{%url 'login'%}">Login</a>
+        </div>
+      </form>
+    </div>
+  
+    <script src="{% static 'css/signup.js'%}"></script>
+  </body>
+</html>
